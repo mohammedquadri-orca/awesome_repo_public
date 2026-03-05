@@ -17,12 +17,12 @@ jobs:
         uses: orcasecurity/shiftleft-fs-action@v1
         with:
           api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
-          project_key: default
+          project_key: sadrul
           path: test
           output: results/
           format: sarif
           show_annotations: false
-      - uses: github/codeql-action/upload-sarif@v2
+      - uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
           # Path to SARIF file relative to the root of the repository

@@ -3,7 +3,7 @@ name: Image Scan - Demo pipeline
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       IMAGE_NAME: base_infra:latest
-      PROJECT_KEY: default
+      PROJECT_KEY: sadrul
       CLI_VERSION: latest
     steps:
     - name: Checkout
@@ -26,13 +26,13 @@ jobs:
       uses: orcasecurity/shiftleft-container-image-action@v1
       with:
           api_token: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
-          project_key: "default"
+          project_key: "sadrul"
           image: base_infra:latest
           console_output: "table"
           format: "sarif"
           
           
-    - uses: github/codeql-action/upload-sarif@v2
+    - uses: github/codeql-action/upload-sarif@v3
       if: always()
       with:
           # Path to SARIF file relative to the root of the repository
