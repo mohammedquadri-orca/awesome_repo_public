@@ -30,10 +30,15 @@ jobs:
           image: base_infra:latest
           console_output: "table"
           format: "sarif"
-          
+    
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: orca-scan-reports
+        path: orca_results/*          
           
     - uses: github/codeql-action/upload-sarif@v3
       if: always()
       with:
           # Path to SARIF file relative to the root of the repository
-          sarif_file: ./image.sarif
+          sarif_file: orca_results/image.sarif
